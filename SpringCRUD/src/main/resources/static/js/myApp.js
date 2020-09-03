@@ -32,7 +32,7 @@ $(document).ready(function() {
 												console.log(value);
 												$.ajax({							            	
 														type: 'GET',
-														url: window.contextRoot +'/employee/status/'+value+'/activation',
+														url: window.contextRoot +'/status/'+value+'/activation',
 														timeout : 100000,
 														
 														success : function(data)

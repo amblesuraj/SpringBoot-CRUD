@@ -1,9 +1,11 @@
+<%@page import="org.apache.naming.java.javaURLContextFactory"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="s" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <spring:url var="css" value="/resources/css"/>
 	<spring:url var="js" value="/resources/js" />
 	<spring:url var="images" value="/resources/images" />
@@ -56,7 +58,7 @@ function roleChange(userId,role)
 							$.ajax({
 										type: 'GET',
 										data:{'id':userId,'role':role},
-										url:'/employee/changeRole',
+										url:'/changeRole',
 										success:function(data)
 										{
 												
@@ -91,7 +93,7 @@ function roleChange(userId,role)
 		<h3 class="text-center">Success page</h3>
 	<div class="row">
 		<div class="col-lg-12 ">
-	<form method="post" action="${pageContext.request.contextPath}/employee/deleteSelected" >
+	<form method="post" action="${pageContext.request.contextPath}/deleteSelected" >
 	
 	<button class="btn btn-danger btnDelete">Delete</button><br><br>
 	<span id="data"></span>
@@ -122,7 +124,8 @@ function roleChange(userId,role)
 					window.name = '${employee.username }';
 				</script>
 				<td>${employee.email }</td>
-				<td>${employee.dateOfBirth }</td>
+				<c:set var="now" value="<%= new java.util.Date() %>"></c:set>
+				<td> <fmt:formatDate type="date" value="${now}"/> </td>
 				<td>${employee.phone }</td>
 
 				<td cellpadding="8">
@@ -141,38 +144,40 @@ function roleChange(userId,role)
 				</td>
 				<td>
 							<select id="select_${employee.id}" class="roleChange" onchange="roleChange(${employee.id},$(this).val())">
-									<option value="admin">Admin</option>
-									<option value="user">User</option>
-									<option value="manager">Manager</option>
-									<option value="employee">Employee</option>
+									<option value="${employee.role}" selected="selected" disabled="disabled">${employee.role}</option>
+																			
+									<option value="Admin">Admin</option>
+									<option value="User">User</option>
+									<option value="Manager">Manager</option>
+									<option value="Employee">Employee</option>
 							</select>
 							<script>
 							
 										$('#select_${employee.id}').val('${employee.role}');
-									
+										
 							</script>
 				
 				</td>
 				<td>
-					<img src="${pageContext.request.contextPath }/employee/qrCode/${employee.email}" height="50" width="50" />
+					<img src="${pageContext.request.contextPath }/qrCode/${employee.email}" height="50" width="50" />
 				</td>
 				<td>
-						<img src="${pageContext.request.contextPath }/employee/barcode/${employee.phone}" height="20" width="100" />
+						<img src="${pageContext.request.contextPath }/barcode/${employee.phone}" height="20" width="100" />
 				</td>
 
 
 				<td><a
-					href="${pageContext.request.contextPath}/employee/update/${employee.id }"><span
+					href="${pageContext.request.contextPath}/update/${employee.id }"><span
 						class="fa fa-pencil fa-2x"></a></td>
 				<td><a class="deleteEmployee"
-					href="${pageContext.request.contextPath}/employee/delete/${employee.id }"><span
+					href="${pageContext.request.contextPath}/delete/${employee.id }"><span
 						class="fa fa-trash fa-2x "></a></td>
 			</tr>
 		</c:forEach>
 		<tr>
-			<td colspan="6"></td>
-			<td><a href="${pageContext.request.contextPath}/employee/index"><span
-					class="fa fa-user-circle-o fa-2x"></a></td>
+			
+			<td colspan="12" class="text-center"><a href="${pageContext.request.contextPath}/index"><span
+					class="fa fa-user-circle-o " style="font-size:20px"> Add New Employee</span></a></td>
 							
 		</tr>
 		
@@ -182,10 +187,14 @@ function roleChange(userId,role)
 	</div>
 	</div>
 	</div>
-	<div class="container">
-				
-	</div>
+	
+	
+	<footer class="footer bg-info ">
 
+<div class="text-center">
+Spring CRUD @2019-20
+</div>
+</footer>
 					
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>

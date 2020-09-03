@@ -21,8 +21,8 @@
 	
 		
 </head>
-<body>
-		
+<body class="d-flex justify-content-center align-items-center">
+<div class="center">		
 	<h3>Add New Employee</h3>
 	
 	<c:if test="${not empty msg }">
@@ -36,7 +36,7 @@
 					</div>
 				</c:if>
 	
-	<s:form method="post" action="${pageContext.request.contextPath}/employee/save" modelAttribute="employee">
+	<s:form method="post" action="${pageContext.request.contextPath}/save" modelAttribute="employee">
 		<table>
 				<tr>
 						<td>Username :</td>
@@ -60,7 +60,7 @@
 				</tr>
 				<tr>
 						<td>Date of Birth </td>
-						<td><s:input path="dateOfBirth"/></td>
+						<td><s:input path="dateOfBirth"/>(dd-mm-yyyy)</td>
 						<td><s:errors path="dateOfBirth" cssClass="text-danger"/></td>
 				</tr>
 				<tr>
@@ -75,25 +75,32 @@
 				</tr>
 				<tr>
 						
-						<td><input type="submit" value="Save"></td>
+						<td><input type="submit" value="Save" class="btn btn-primary btn-block"></td>
 						<!--<td><input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/></td> -->
 						
-						<td><a href="${pageContext.request.contextPath}/employee/showEmployee">
+						<td><a href="${pageContext.request.contextPath}/showEmployee" class="btn btn-success btn-block">
 						
 						<span class="fa fa-eye"></span>
 						
 						</a></td>
 				</tr>
-				<tr>
-						<td><button id="callBtn" value="Call Me" onclick="callMe()">Call me</button></td>
-				</tr>
+				
 			
 		</table>
 		<s:hidden path="id"/>
 		
 		
 	</s:form>
-	
+
+
+</div>	
+
+<footer class="footer bg-info ">
+
+<div class="text-center">
+Spring CRUD @2019-20
+</div>
+</footer>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" ></script>		

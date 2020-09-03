@@ -24,7 +24,6 @@ import com.ngu.Helper.CodeHelper;
 import com.ngu.Model.Employee;
 import com.ngu.Service.EmployeeService;
 @Controller
-@RequestMapping("/employee")
 public class EmployeeController 
 {
 
@@ -92,7 +91,7 @@ public class EmployeeController
 			public String delete(@PathVariable int id)
 			{
 				employeeService.delete(id);
-				return "redirect:/employee/showEmployee";
+				return "redirect:/showEmployee";
 			}
 			
 			@RequestMapping(value = "/deleteSelected",method = RequestMethod.POST)
@@ -116,7 +115,7 @@ public class EmployeeController
 					modelMap.put("error",e.getMessage());
 					modelMap.put("employee",employeeService.findAll());
 				}
-				return "redirect:/employee/showEmployee";
+				return "redirect:/showEmployee";
 			}
 			
 			@RequestMapping(value="/status/{id}/activation", method= RequestMethod.GET )

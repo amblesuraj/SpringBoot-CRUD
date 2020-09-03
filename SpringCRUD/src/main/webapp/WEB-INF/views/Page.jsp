@@ -12,26 +12,17 @@
 <meta charset="ISO-8859-1">
 <title>Online Shopping - ${title}</title>
 
-	<link href="${css}/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="${css}/bootstrap.min.css">
 	<link href="${css}/font-awesome.min.css" rel="stylesheet">
 	<link href="${css}/myApp.css" rel="stylesheet">
 
-
 </head>
-<body>
-		<header>
-					<b>
-									${messageAll }
-					</b>
-					<video controls>
-							<source src="D:\Videos\Spring MVC Framework/3.Spring framework work environment setup - YouTube.mp4">
-					</video>			
+<body class="d-flex justify-content-center align-items-center">
+<div class="center">
+	<h1>${message}</h1>
+
+</div>
 		
-		</header>
-		
-		<footer class="footer">
-			<%@include file="./shared/footer.jsp"%>
-		</footer>
 		
 </body>
 			

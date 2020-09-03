@@ -11,8 +11,10 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Entity
 @Table(name="employee")
@@ -38,7 +40,8 @@ public class Employee {
 	private boolean active;
 	
 	@NotNull
-	@DateTimeFormat(pattern = "dd-mm-yyyy")
+	@Past
+	@DateTimeFormat(pattern="dd-mm-yyyy")
 	private Date dateOfBirth;
 	
 	@Column(name = "phone")
